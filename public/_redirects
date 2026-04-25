@@ -1,6 +1,12 @@
-# Assets and static files
+# Assets and static files - serve directly
 /assets/* /assets/:splat 200
-/*.* /:splat 200
+/*.js /:splat 200
+/*.css /:splat 200
+/*.png /:splat 200
+/*.jpg /:splat 200
+/*.svg /:splat 200
+/*.ico /:splat 200
 
-# SPA routing for HTML files
-/* /index.html 200
+# SPA routing - only for non-file paths
+/level/:id* /index.html 200
+/ /index.html 200
