@@ -1,1 +1,6 @@
-/*    /index.html   200
+# Assets and static files
+/assets/* /assets/:splat 200
+/*.* /:splat 200
+
+# SPA routing for HTML files
+/* /index.html 200
