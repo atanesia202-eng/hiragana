@@ -3,7 +3,6 @@ import { join } from 'path';
 
 const distDir = 'dist';
 const clientDir = join(distDir, 'client');
-const staticDir = join(distDir, 'static');
 
 // Get the actual hashed filenames
 const assets = readdirSync(join(clientDir, 'assets'));
@@ -15,13 +14,8 @@ if (!indexJs || !stylesCss) {
   process.exit(1);
 }
 
-// Create static directory
-if (!existsSync(staticDir)) {
-  mkdirSync(staticDir, { recursive: true });
-}
-
 // Copy assets
-const assetsDir = join(staticDir, 'assets');
+const assetsDir = join(distDir, 'assets');
 if (!existsSync(assetsDir)) {
   mkdirSync(assetsDir, { recursive: true });
 }
@@ -50,12 +44,12 @@ const html = `<!DOCTYPE html>
 </html>
 `;
 
-writeFileSync(join(staticDir, 'index.html'), html);
+writeFileSync(join(distDir, 'index.html'), html);
 
 // Create _redirects for SPA routing
-writeFileSync(join(staticDir, '_redirects'), '/* /index.html 200\n');
+writeFileSync(join(distDir, '_redirects'), '/* /index.html 200\n');
 
-console.log('Static build complete in dist/static/');
+console.log('Static build complete in dist/');
 console.log('- index.html created');
 console.log('- _redirects created for SPA routing');
 console.log(`- Assets copied: ${assets.length} files`);
